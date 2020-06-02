@@ -76,9 +76,9 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) {
+        //第二个执行的方法
         this.applicationContext = applicationContext;
         SpringExtensionFactory.addApplicationContext(applicationContext);
-        this.applicationContext.publishEvent(this);
         if (applicationContext != null) {
             SPRING_CONTEXT = applicationContext;
             //获取到当前spring容器之后将当前类注入到spring的刷新监听事件里面
@@ -104,6 +104,8 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 
     @Override
     public void setBeanName(String name) {
+        //第一步执行的
+        System.out.println("执行步骤----1");
         this.beanName = name;
     }
 
@@ -118,6 +120,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        //第四步执行的
         if (isDelay() && !isExported() && !isUnexported()) {
             if (logger.isInfoEnabled()) {
                 logger.info("The service ready on spring started. service: " + getInterface());
@@ -138,6 +141,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
     @Override
     @SuppressWarnings({"unchecked", "deprecation"})
     public void afterPropertiesSet() throws Exception {
+        //第三步执行的
         //在初始化bean之前实现initBean会调用该方法通过该方法获取当前服务的ProviderConfig的配置以及ProtocolConfig的配置
         if (getProvider() == null) {
             //获取spring容器中的ProviderConfig 服务者的的bean

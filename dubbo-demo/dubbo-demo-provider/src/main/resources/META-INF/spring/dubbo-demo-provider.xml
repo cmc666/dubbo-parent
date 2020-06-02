@@ -36,6 +36,6 @@
     <bean id="testBean" class="com.alibaba.dubbo.demo.provider.TestSpringBean" init-method="initMethod" destroy-method="destoryMethod"/>
 
     <!-- declare the service interface to be exported -->
-    <dubbo:service interface="com.alibaba.dubbo.demo.DemoService" ref="demService"/>
+    <dubbo:service interface="com.alibaba.dubbo.demo.DemoService" ref="demoService"/>
 
 </beans>
