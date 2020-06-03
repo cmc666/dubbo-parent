@@ -121,6 +121,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
         //第四步执行的
+        //刷新容器如果非延迟导入且是否导入为是则导入方法
         if (isDelay() && !isExported() && !isUnexported()) {
             if (logger.isInfoEnabled()) {
                 logger.info("The service ready on spring started. service: " + getInterface());
@@ -277,6 +278,7 @@ public class ServiceBean<T> extends ServiceConfig<T> implements InitializingBean
                 setPath(beanName);
             }
         }
+        //如果不是延迟导入不走export方法
         if (!isDelay()) {
             export();
         }
