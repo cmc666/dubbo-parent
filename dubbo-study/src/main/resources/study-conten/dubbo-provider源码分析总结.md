@@ -10,6 +10,8 @@
 
 5.在META-INF下编写Spring.handlers和Spring.schemas文件（例如：resource/META-INF/spring.handlers和spring.schemas）
 
+具体的了解可以参考（https://www.cnblogs.com/lihao007/p/8455916.html）博客
+
 
 
 
