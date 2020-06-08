@@ -23,7 +23,7 @@
 
 转换的过程如下：
         -->  ServiceBean(初始化配置类 通过spring加载)   
-        -->  URL(通过ServiceBean的一些参数通过new URL() 对象的方式生成 改对象用于dubbo各个层自建的交互传承dubbo各个协议交换的对象详见：ServiceConfig类下面的doExportUrlsFor1Protocol()方法)  
+        -->  URL(通过ServiceBean的一些参数通过new URL() 对象的方式生成 改对象用于dubbo各个层之间的交互传承dubbo各个协议交换的对象详见：ServiceConfig类下面的doExportUrlsFor1Protocol()方法)  
         -->  Invoker(proxyFactory.getInvoker方法得到接口实现类的代理对象详见：ServiceConfig类下面的doExportUrlsFor1Protocol()方法)
         -->  Exporter( protocol.export(wrapperInvoker) 通过协议对象生成能够提供服务的Export的对象  而exporter对象就是暴露接口接收到请求之后通过请求参数获取到对应的
                         expoter的对象通过exporter对象的.getInvoker方法获取持有接口实现类的代理对象Invoker 通过Invoker对象的invok方法调用对象执行对应的方法进而返回处理结果)
